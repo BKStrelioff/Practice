@@ -79,7 +79,7 @@ namespace Preferences.DomainModels
             var copy = new PersonColorPreferenceModel ( modifiable );
             copy.Id = Interlocked.Increment ( ref _recordsAdded );
 
-            _byId [ modifiable.Id ] = copy;
+            _byId [copy.Id ] = copy;
         }
 
         /// <inheritdoc />

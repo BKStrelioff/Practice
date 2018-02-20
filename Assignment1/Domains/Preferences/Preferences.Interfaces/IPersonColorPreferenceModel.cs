@@ -14,6 +14,9 @@ namespace Preferences.Interfaces
     /// </summary>
     public interface IPersonColorPreferenceModel
     {
+
+        void PopulateFrom ( [ NotNull ] IPersonColorPreferenceModel source );
+
         int Id
         {
             get;

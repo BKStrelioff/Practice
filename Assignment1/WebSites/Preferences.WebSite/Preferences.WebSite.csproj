@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Preferences.WebSite</RootNamespace>
     <AssemblyName>Preferences.WebSite</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,13 +53,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
@@ -112,6 +113,7 @@
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -177,6 +179,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Areas\PreferencesArea\Controllers\RecordsController.cs" />
+    <Compile Include="Areas\PreferencesArea\Models\RecordsModel.cs" />
+    <Compile Include="Areas\PreferencesArea\PreferencesAreaAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -215,6 +220,15 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Areas\PreferencesArea\Views\web.config" />
+    <Content Include="Areas\PreferencesArea\Views\Shared\_PartialRecordsLinks.cshtml" />
+    <Content Include="Areas\PreferencesArea\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\PreferencesArea\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\PreferencesArea\Views\Records\RecordsIndex.cshtml" />
+    <Content Include="Areas\PreferencesArea\Views\Records\Gender.cshtml" />
+    <Content Include="Areas\PreferencesArea\Views\Records\Name.cshtml" />
+    <Content Include="Areas\PreferencesArea\Views\Records\Birthdate.cshtml" />
+    <Content Include="Areas\PreferencesArea\Views\Records\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -252,6 +266,40 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domains\Preferences\Preferences.DataObjects\Preferences.DataObjects.csproj">
+      <Project>{dd4aab7a-883f-47f9-88bf-84eb812dbac8}</Project>
+      <Name>Preferences.DataObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Domains\Preferences\Preferences.DomainModels\Preferences.DomainModels.csproj">
+      <Project>{4bf395bc-c37a-4c2d-af5d-27b02d906d6b}</Project>
+      <Name>Preferences.DomainModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Domains\Preferences\Preferences.Extensions\Preferences.Extensions.csproj">
+      <Project>{5fd96285-a180-40a6-8a8e-417425358b55}</Project>
+      <Name>Preferences.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Domains\Preferences\Preferences.Interfaces\Preferences.Interfaces.csproj">
+      <Project>{0235667b-b534-41ae-a878-9f3030bc168f}</Project>
+      <Name>Preferences.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Framework.Annotations\Framework.Annotations.csproj">
+      <Project>{02429829-d602-4994-a4fb-2a2e514ecd8a}</Project>
+      <Name>Framework.Annotations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Framework.Extensions\Framework.Extensions.csproj">
+      <Project>{67ee8a0d-ce74-43ce-a17a-e6f8d76549c2}</Project>
+      <Name>Framework.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Framework.Helpers\Framework.Helpers.csproj">
+      <Project>{f5fba527-8de4-4e62-9728-80928d0ebed5}</Project>
+      <Name>Framework.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Framework.Interfaces\Framework.Interfaces.csproj">
+      <Project>{efca59cf-7e99-4f97-b448-d77738a3d31a}</Project>
+      <Name>Framework.Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

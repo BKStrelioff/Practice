@@ -142,6 +142,16 @@ namespace Preferences.DomainModels
         }
 
         /// <inheritdoc />
+        public void PopulateFrom(IPersonColorPreferenceModel source)
+        {
+            DateOfBirth = source.DateOfBirth;
+            FavoriteColor = source.FavoriteColor;
+            FirstName = source.FirstName;
+            Gender = source.Gender;
+            LastName = source.LastName;
+        }
+
+        /// <inheritdoc />
         public int Id
         {
             get;
