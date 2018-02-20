@@ -1,39 +1,136 @@
-﻿using System;
+﻿#region usings
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+
+using Framework.Annotations;
+
+using Preferences.DataObjects.Get;
+using Preferences.DataObjects.Post;
+
+using Records.WebService.Models;
+
+#endregion
 
 namespace Records.WebService.Controllers
 {
+
     public class RecordsController : ApiController
     {
-        // GET: api/Records
-        public IEnumerable<string> Get()
+
+        #region public constructors
+
+        public RecordsController ( )
         {
-            return new string[] { "value1", "value2" };
+            MyRecordsModel = new RecordsApiModel ( );
         }
 
-        // GET: api/Records/5
-        public string Get(int id)
+        #endregion
+
+        #region instance public methods
+
+        [ NotNull ]
+        [ ItemNotNull ]
+        [ HttpGet ]
+        [ Route ( "records/birthdate" ) ]
+        public IEnumerable < GetPersonColorPreferenceModelDto > Birthdate ( )
         {
-            return "value";
+            var result = MyRecordsModel.ByBirthDate ( );
+
+            return result;
         }
 
-        // POST: api/Records
-        public void Post([FromBody]string value)
+        // DELETE: records/5
+        public void Delete ( int id )
         {
         }
 
-        // PUT: api/Records/5
-        public void Put(int id, [FromBody]string value)
+        [ NotNull ]
+        [ ItemNotNull ]
+        [ Route ( "records/gender" ) ]
+        [ HttpGet ]
+        public IEnumerable < GetPersonColorPreferenceModelDto > Gender ( )
         {
+            var result = MyRecordsModel.ByGender ( );
+
+            return result;
         }
 
-        // DELETE: api/Records/5
-        public void Delete(int id)
+        // GET: records
+        [ NotNull ]
+        [ ItemNotNull ]
+        [Route("records")]
+        [HttpGet]
+        public IEnumerable < GetPersonColorPreferenceModelDto > Get ( )
         {
+            var result = MyRecordsModel.ByIndex ( );
+
+            return result;
         }
+
+        [ NotNull ]
+        [ ItemNotNull ]
+        [ Route ( "records/lastname" ) ]
+        [ HttpGet ]
+        public IEnumerable < GetPersonColorPreferenceModelDto > LastName ( )
+        {
+            var result = MyRecordsModel.ByLastNameDescending ( );
+
+            return result;
+        }
+
+        [ NotNull ]
+        [ ItemNotNull ]
+        [ Route ( "records/name" ) ]
+        [ HttpGet ]
+        public IEnumerable < GetPersonColorPreferenceModelDto > Name ( )
+        {
+            var result = MyRecordsModel.ByName ( );
+
+            return result;
+        }
+
+        //// POST: records
+        //[HttpPost]
+        //public int PostDto ( [ NotNull ]  PostPersonColorPreferenceModelDto dto )
+        //{
+        //    var result = MyRecordsModel.Create ( dto );
+
+        //    return result;
+        //}
+
+        /// <summary>
+        /// This API takes a single line that still contains the delimiter.
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// Since we are told the data fields do not contain the delimiter,
+        /// we can determine the delimiter from scanning the line
+        /// </remarks>
+        [HttpPost]
+        [Route("records")]
+        public int PostLine([NotNull] object line)
+        {
+            var asString = line.ToString();
+            var result = MyRecordsModel.Create(asString);
+
+            return result;
+        }
+
+        #endregion
+
+        #region instance non-public properties and indexers
+
+        [ NotNull ]
+        private RecordsApiModel MyRecordsModel
+        {
+            get;
+        }
+
+        #endregion
+
     }
+
 }

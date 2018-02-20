@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PersonColorPreferenceModel.cs" />
+    <Compile Include="PreferencesHelpers.cs" />
     <Compile Include="PreferencesModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

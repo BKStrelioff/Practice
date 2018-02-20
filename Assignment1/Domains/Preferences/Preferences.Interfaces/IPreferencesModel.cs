@@ -1,6 +1,7 @@
 ﻿#region usings
 
 using System.Collections.Generic;
+using System.IO;
 
 using Framework.Annotations;
 
@@ -22,7 +23,7 @@ namespace Preferences.Interfaces
         /// </summary>
         /// <param name="modifiable">The modifiable.</param>
         /// <returns>IPersonColorPreferenceModel.</returns>
-        void Add ( [ NotNull ] IPersonColorPreferenceModel modifiable );
+        int Add ( [ NotNull ] IPersonColorPreferenceModel modifiable );
 
         /// <summary>
         ///     Adds the specified lines.
@@ -35,6 +36,10 @@ namespace Preferences.Interfaces
         ///     Adds the specified lines.
         /// </summary>
         void Add ( [ NotNull ] [ ItemNotNull ] IEnumerable < IPersonColorPreferenceModel > records );
+
+        int Add ( [ NotNull ] string line, char delimiter );
+
+        int Add ( [ NotNull ] string line );
 
         [ NotNull ]
         [ ItemNotNull ]

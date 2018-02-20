@@ -12,15 +12,15 @@ using Preferences.DomainModels;
 
 #endregion
 
-namespace Preferences.WebSite.Areas.PreferencesArea.Models
+namespace Records.WebService.Models
 {
 
-    public class RecordsModel
+    public class RecordsApiModel
     {
 
         #region non-public constructors
 
-        static RecordsModel ( )
+        static RecordsApiModel ( )
         {
             CurrentModel = new PreferencesModel ( );
 
@@ -88,11 +88,30 @@ namespace Preferences.WebSite.Areas.PreferencesArea.Models
             return result;
         }
 
-        public void Create ( [ NotNull ] PostPersonColorPreferenceModelDto dto )
+        public int Create ( [ NotNull ] PostPersonColorPreferenceModelDto dto )
         {
             var record = dto.To < PersonColorPreferenceModel > ( );
 
-            CurrentModel.Add ( record );
+            var result = CurrentModel.Add ( record );
+
+            return result;
+        }
+
+        public int Create ( [ NotNull ] string line )
+        {
+           var result = CurrentModel.Add ( line );
+
+            return result;
+        }
+
+        public int Create ( [ NotNull ] string line, char delimiter )
+        {
+            throw new NotImplementedException ( );
+        }
+
+        public int Post ( [ NotNull ] string line )
+        {
+            throw new NotImplementedException ( );
         }
 
         #endregion

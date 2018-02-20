@@ -1,15 +1,12 @@
 ﻿#region usings
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
 using Framework.Annotations;
 using Framework.Extensions;
-using Framework.Helpers;
 
-using Preferences.Extensions;
 using Preferences.Interfaces;
 
 #endregion
@@ -38,73 +35,68 @@ namespace Preferences.DomainModels
 
         #endregion
 
-        #region class public methods
+        #region instance public methods
 
-        [ NotNull ]
-        public static IEnumerable < IPersonColorPreferenceModel > GenerateRandomRecords ( int count, [ NotNull ] Random randomProvider, int randomLimit )
+        /// <inheritdoc />
+        public int Add ( IPersonColorPreferenceModel modifiable )
         {
-            var result = new List < IPersonColorPreferenceModel > ( );
-            var epoch = new DateTime ( 1970, 1, 1 );
-            var daysSinceEpoch = ( int ) ( DateTime.Today - epoch ).TotalDays;
-            var genderValues = new [ ]
-            {
-                "Female",
-                "Male"
-            };
-            for ( var index = 0; index < count; index += 1 )
-            {
-                var dateTimeBirth = epoch.AddDays ( randomProvider.Next ( 0, daysSinceEpoch ) );
-                var dateOfBirth = dateTimeBirth.AsPreferenceFormat ( );
-                var genderValue = genderValues [ dateTimeBirth.Date.Day % 2 ];
-                result.Add ( new PersonColorPreferenceModel
-                {
-                    FavoriteColor = RandomHelpers.RandomString ( randomProvider, 3, 10, "color" ),
-                    FirstName = RandomHelpers.RandomString ( randomProvider, 3, 10, "firstFirst" ),
-                    LastName = RandomHelpers.RandomString ( randomProvider, 3, 10, "familyFamily'-" ),
-                    DateOfBirth = dateOfBirth,
-                    Gender = genderValue
-                } );
-            }
+            var copy = new PersonColorPreferenceModel ( modifiable );
+            var newId = Interlocked.Increment ( ref _recordsAdded );
+            copy.Id = newId;
+
+            _byId [ newId ] = copy;
+
+            return newId;
+        }
+
+        /// <inheritdoc />
+        public int Add ( string line, char delimiter )
+        {
+            var record = PreferencesHelpers.Parse ( line, delimiter );
+
+            var result = Add ( record );
 
             return result;
         }
 
-        #endregion
-
-        #region instance public methods
-
         /// <inheritdoc />
-        public void Add ( IPersonColorPreferenceModel modifiable )
+        public int Add ( string line )
         {
-            var copy = new PersonColorPreferenceModel ( modifiable );
-            copy.Id = Interlocked.Increment ( ref _recordsAdded );
+            var delimiter = PreferencesHelpers.DecideDelimiterFromLine ( line );
+            var result = Add ( line, delimiter );
 
-            _byId [copy.Id ] = copy;
+            return result;
         }
 
         /// <inheritdoc />
         public void Add ( IEnumerable < IPersonColorPreferenceModel > modifiable )
         {
-            modifiable.ForEach ( Add );
+            var personColorPreferenceModels = modifiable.ToSafeList ( );
+            personColorPreferenceModels.ForEach ( r => Add ( r ) );
         }
 
         /// <inheritdoc />
         public void Add ( IEnumerable < string > lines, char delimiter )
         {
-            throw new NotImplementedException ( );
+            foreach ( var line in lines )
+            {
+                Add ( line, delimiter );
+            }
         }
 
         /// <inheritdoc />
         public IEnumerable < IPersonColorPreferenceModel > ByBirthDate ( )
         {
-            var result = _byId.Values.OrderBy ( s => s.DateTimeBirth ).ToList ( );
+            var personColorPreferenceModels = _byId.Values.ToSafeList ( );
+            var result = personColorPreferenceModels.OrderBy ( s => s.DateTimeBirth ).ToList ( );
 
             return result;
         }
 
         public IEnumerable < IPersonColorPreferenceModel > ByGenderLastName ( )
         {
-            var result = _byId.Values.OrderBy ( r => r.Gender ).ThenBy ( r => r.LastNameUpper ).ToList ( );
+            var personColorPreferenceModels = _byId.Values.ToSafeList ( );
+            var result = personColorPreferenceModels.OrderBy ( r => r.Gender ).ThenBy ( r => r.LastNameUpper ).ToList ( );
 
             return result;
         }
@@ -112,7 +104,8 @@ namespace Preferences.DomainModels
         /// <inheritdoc />
         public IEnumerable < IPersonColorPreferenceModel > ByLastNameDescending ( )
         {
-            var result = _byId.Values.OrderByDescending ( r => r.LastNameUpper ).ToList ( );
+            var personColorPreferenceModels = _byId.Values.ToSafeList ( );
+            var result = personColorPreferenceModels.OrderByDescending ( r => r.LastNameUpper ).ToList ( );
 
             return result;
         }
@@ -120,7 +113,8 @@ namespace Preferences.DomainModels
         /// <inheritdoc />
         public IEnumerable < IPersonColorPreferenceModel > ByName ( )
         {
-            var result = _byId.Values.OrderBy ( r => r.LastNameUpper ).ThenBy ( r => r.FirstNameUpper ).ToList ( );
+            var personColorPreferenceModels = _byId.Values.ToSafeList ( );
+            var result = personColorPreferenceModels.OrderBy ( r => r.LastNameUpper ).ThenBy ( r => r.FirstNameUpper ).ToList ( );
 
             return result;
         }

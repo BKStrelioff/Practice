@@ -22,29 +22,6 @@ namespace ConsoleApp1
 
         #region class non-public methods
 
-        private static char AssociatedDelimiter ([ NotNull ] FileSystemInfo fileInfo )
-        {
-            var extension = fileInfo.Extension.ToUpperInvariant ( );
-            var result = ' ';
-            switch ( extension )
-            {
-                case ".CSV":
-                    result = ',';
-                    break;
-                case ".TXT":
-                    result = ' ';
-                    break;
-                case ".PIPE":
-                    result = '|';
-                    break;
-                default:
-                    WriteUsageInfo ( );
-                    Environment.Exit ( 1 );
-                    break;
-            }
-
-            return result;
-        }
 
         /// <summary>
         ///     Defines the entry point of the application.
@@ -64,36 +41,8 @@ namespace ConsoleApp1
                     Console.WriteLine ( $"File '{fileInfo.FullName} does not exist" );
                 }
 
-                var delimiterChar = AssociatedDelimiter ( fileInfo );
-                var delimiterString = delimiterChar.ToString ( );
-
                 var preferencesModel = new PreferencesModel ( );
-                var streamReader = fileInfo.OpenText();
-                var readToEnd = streamReader.ReadToEnd();
-                var lines = readToEnd.Split ( new [ ]
-                    {
-                        Environment.NewLine
-                    },
-                    StringSplitOptions.RemoveEmptyEntries );
-                foreach ( var line in lines )
-                {
-                    var parts = line.Split ( delimiterChar ).Select(l => l.Trim()).ToList();
-                    if ( parts.Count != 5 )
-                    {
-                        throw new InvalidOperationException ( );
-                    }
-
-                    var record = new PersonColorPreferenceModel
-                    {
-                        LastName = parts[0],
-                        FirstName = parts[1],
-                        Gender = parts[2],
-                        FavoriteColor = parts[3],
-                        DateOfBirth = parts[4]
-                    };
-
-                    preferencesModel.Add ( record );
-                }
+                PreferencesHelpers.Load (preferencesModel, fileInfo );
 
                 var byGender = preferencesModel.ByGenderLastName ( );
                 WriteRecords ( "By gender, then last name ascending", byGender );
@@ -122,10 +71,10 @@ namespace ConsoleApp1
                     Console.WriteLine ( $"File '{fileInfo.FullName} already exists, you must remove it manually" );
                 }
 
-                var randomRecords = PreferencesModel.GenerateRandomRecords ( recordsToGenerate, new Random ( ), 7 );
+                var randomRecords = PreferencesHelpers.GenerateRandomRecords ( recordsToGenerate, new Random ( ), 7 );
                 using ( var writer = new StreamWriter ( fileInfo.FullName, false ) )
                 {
-                    var delimiterChar = AssociatedDelimiter ( fileInfo );
+                    var delimiterChar = PreferencesHelpers.AssociatedDelimiter ( fileInfo );
                     var delimiterString = delimiterChar.ToString ( );
                     randomRecords.ForEach ( r =>
                     {
