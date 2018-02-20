@@ -76,9 +76,10 @@ namespace Preferences.DomainModels
         /// <inheritdoc />
         public void Add ( IPersonColorPreferenceModel modifiable )
         {
-            modifiable.Id = Interlocked.Increment ( ref _recordsAdded );
+            var copy = new PersonColorPreferenceModel ( modifiable );
+            copy.Id = Interlocked.Increment ( ref _recordsAdded );
 
-            _byId [ modifiable.Id ] = modifiable;
+            _byId [ modifiable.Id ] = copy;
         }
 
         /// <inheritdoc />
@@ -137,7 +138,10 @@ namespace Preferences.DomainModels
         /// <inheritdoc />
         public IEnumerable < IPersonColorPreferenceModel > PersonColorPreferences
         {
-            get;
+            get
+            {
+                return _byId.Values.ToList ( );
+            }
         }
 
         #endregion

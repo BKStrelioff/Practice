@@ -1,16 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\xunit.core.2.4.0-beta.1.build3958\build\xunit.core.props" Condition="Exists('..\..\..\packages\xunit.core.2.4.0-beta.1.build3958\build\xunit.core.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>5b1f6869-d80c-4050-a707-d32f5c1bb95a</ProjectGuid>
+    <ProjectGuid>{5B1F6869-D80C-4050-A707-D32F5C1BB95A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Preferences.UnitTests</RootNamespace>
     <AssemblyName>Preferences.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,24 +33,64 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.assert, Version=2.4.0.3958, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\xunit.assert.2.4.0-beta.1.build3958\lib\netstandard1.1\xunit.assert.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.core, Version=2.4.0.3958, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\xunit.extensibility.core.2.4.0-beta.1.build3958\lib\netstandard1.1\xunit.core.dll</HintPath>
+    </Reference>
+    <Reference Include="xunit.execution.desktop, Version=2.4.0.3958, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\xunit.extensibility.execution.2.4.0-beta.1.build3958\lib\net452\xunit.execution.desktop.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="PersonColorPreferenceModelUnitTests.cs" />
+    <Compile Include="DateExtensionsUnitTests.cs" />
+    <Compile Include="PreferencesModelUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Preferences.DataObjects\Preferences.DataObjects.csproj">
+      <Project>{dd4aab7a-883f-47f9-88bf-84eb812dbac8}</Project>
+      <Name>Preferences.DataObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Preferences.DomainModels\Preferences.DomainModels.csproj">
+      <Project>{4bf395bc-c37a-4c2d-af5d-27b02d906d6b}</Project>
+      <Name>Preferences.DomainModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Preferences.Extensions\Preferences.Extensions.csproj">
+      <Project>{5fd96285-a180-40a6-8a8e-417425358b55}</Project>
+      <Name>Preferences.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Preferences.Interfaces\Preferences.Interfaces.csproj">
+      <Project>{0235667b-b534-41ae-a878-9f3030bc168f}</Project>
+      <Name>Preferences.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\xunit.core.2.4.0-beta.1.build3958\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.core.2.4.0-beta.1.build3958\build\xunit.core.props'))" />
+    <Error Condition="!Exists('..\..\..\packages\xunit.core.2.4.0-beta.1.build3958\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\xunit.core.2.4.0-beta.1.build3958\build\xunit.core.targets'))" />
+  </Target>
+  <Import Project="..\..\..\packages\xunit.core.2.4.0-beta.1.build3958\build\xunit.core.targets" Condition="Exists('..\..\..\packages\xunit.core.2.4.0-beta.1.build3958\build\xunit.core.targets')" />
+</Project>

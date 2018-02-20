@@ -65,21 +65,18 @@ namespace Preferences.Interfaces
         DateTime DateTimeBirth
         {
             get;
-            set;
         }
 
         [NotNull]
         string LastNameUpper
         {
             get;
-            set;
         }
 
         [ NotNull ]
         string FirstNameUpper
         {
             get;
-            set;
         }
     }
 

@@ -1,0 +1,11 @@
+﻿<SolutionConfiguration>
+  <Settings>
+    <AllowParallelTestExecution>True</AllowParallelTestExecution>
+    <MetricsExclusionList>
+      <Value>Framework\Framework.Annotations\Framework.Annotations.csproj</Value>
+      <Value>Framework\Framework.UnitTests\Framework.UnitTests.csproj</Value>
+      <Value>Domains\Preferences\Preferences.UnitTests\Preferences.UnitTests.csproj</Value>
+    </MetricsExclusionList>
+    <SolutionConfigured>True</SolutionConfigured>
+  </Settings>
+</SolutionConfiguration>

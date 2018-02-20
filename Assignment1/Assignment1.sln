@@ -34,6 +34,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Preferences.Extensions", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Extensions", "Framework\Framework.Extensions\Framework.Extensions.csproj", "{67EE8A0D-CE74-43CE-A17A-E6F8D76549C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebServices", "WebServices", "{EFFBFF7A-44F9-4203-8A00-2FDFEDB8546F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebSites", "WebSites", "{CE02B3F8-3E6C-46C9-B2B9-44B759B0038A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.UnitTests", "Framework\Framework.UnitTests\Framework.UnitTests.csproj", "{5F91B271-3290-44DD-B238-90919299D45D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +86,10 @@ Global
 		{67EE8A0D-CE74-43CE-A17A-E6F8D76549C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67EE8A0D-CE74-43CE-A17A-E6F8D76549C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67EE8A0D-CE74-43CE-A17A-E6F8D76549C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F91B271-3290-44DD-B238-90919299D45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F91B271-3290-44DD-B238-90919299D45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F91B271-3290-44DD-B238-90919299D45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F91B271-3290-44DD-B238-90919299D45D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +105,7 @@ Global
 		{F5FBA527-8DE4-4E62-9728-80928D0EBED5} = {307876D8-B8DF-4C7E-B97F-4376CAAC47A2}
 		{5FD96285-A180-40A6-8A8E-417425358B55} = {AB834BF8-02EA-4A3E-BDD9-3BC79EDB8267}
 		{67EE8A0D-CE74-43CE-A17A-E6F8D76549C2} = {307876D8-B8DF-4C7E-B97F-4376CAAC47A2}
+		{5F91B271-3290-44DD-B238-90919299D45D} = {307876D8-B8DF-4C7E-B97F-4376CAAC47A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FA41BAAB-7CC3-41C8-8AC1-1AE43EE09621}
