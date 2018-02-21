@@ -1,18 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿#region usings
+
 using System.Web.Mvc;
 
+#endregion
+
+#pragma warning disable 1591
 namespace Preferences.WebSite.Controllers
 {
+
     public class HomeController : Controller
     {
-        public ActionResult Index()
+
+        #region instance public methods
+
+        public ActionResult Index ( )
         {
             ViewBag.Title = "Home Page";
 
-            return View();
+            return View ( );
         }
+
+        #endregion
+
     }
+
 }

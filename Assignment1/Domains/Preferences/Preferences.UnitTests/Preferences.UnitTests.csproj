@@ -58,11 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainModelsUnitTests.cs" />
+    <Compile Include="GetPersonColorPreferenceModelDtoUnitTests.cs" />
     <Compile Include="PersonColorPreferenceModelUnitTests.cs" />
     <Compile Include="DateExtensionsUnitTests.cs" />
+    <Compile Include="PostPersonColorPreferenceModelDtoUnitTests.cs" />
     <Compile Include="PreferencesHelpersUnitTests.cs" />
     <Compile Include="PreferencesModelUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

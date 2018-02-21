@@ -12,6 +12,9 @@
       <Value>WebServices\Records.WebService\Records.WebService.csproj\App_Start</Value>
       <Value>Global.asax.cs:WebServices\Records.WebService\Records.WebService.csproj</Value>
       <Value>WebSites\Preferences.WebSite\Preferences.WebSite.csproj</Value>
+      <Value>Records.WebService.UnitTests\Records.WebService.UnitTests.csproj</Value>
+      <Value>Preferences.WebSite.UnitTests\Preferences.WebSite.UnitTests.csproj</Value>
+      <Value>Attributes.cs:Framework\Framework.Annotations\Framework.Annotations.csproj</Value>
     </MetricsExclusionList>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>

@@ -26,7 +26,8 @@ namespace Preferences.Interfaces
         ///     Populates from.
         /// </summary>
         /// <param name="source">The source.</param>
-        void PopulateFrom ( [ NotNull ] IPersonColorPreferenceModel source );
+        [ NotNull ]
+        IPersonColorPreferenceModel PopulateFrom ( [ NotNull ] IPersonColorPreferenceModel source );
 
         #endregion
 
