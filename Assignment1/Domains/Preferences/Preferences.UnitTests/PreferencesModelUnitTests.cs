@@ -46,10 +46,10 @@ namespace Preferences.UnitTests
             Assert.False ( ReferenceEquals ( enum1, enum2 ) );
 
             var records1 = actual.PersonColorPreferences.ToList ( );
-            Assert.Equal ( 0, records1.Count );
+            Assert.Empty ( records1 );
 
             var records2 = actual.PersonColorPreferences.ToList ( );
-            Assert.Equal ( 0, records2.Count );
+            Assert.Empty ( records2 );
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Preferences.UnitTests
             // Set the second last bit to ensure not 0 or 1;
             var id = Guid.NewGuid ( ).GetHashCode ( ) | 0x02;
             var now = DateTime.Now.Date;
-            var nowString = now.AsPreferenceFormat ( );
+            var nowString = now.ToPreferenceFormat ( );
             var favoriteColor = Guid.NewGuid ( ).ToString ( );
             var firstName = Guid.NewGuid ( ).ToString ( );
             var gender = Guid.NewGuid ( ).ToString ( );

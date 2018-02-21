@@ -27,7 +27,7 @@ namespace Preferences.UnitTests
         public void DateTimeBirthInvalidTracking ( )
         {
             var now = DateTime.Now.Date;
-            var nowString = now.AsPreferenceFormat ( );
+            var nowString = now.ToPreferenceFormat ( );
             var actual = new PersonColorPreferenceModel
             {
                 DateOfBirth = nowString
@@ -50,7 +50,7 @@ namespace Preferences.UnitTests
             Assert.Equal ( DateTime.MinValue, actual.DateTimeBirth );
 
             var now = DateTime.Now.Date;
-            actual.DateOfBirth = now.AsPreferenceFormat ( );
+            actual.DateOfBirth = now.ToPreferenceFormat ( );
             Assert.Equal ( now, actual.DateTimeBirth );
         }
 
@@ -187,7 +187,7 @@ namespace Preferences.UnitTests
         public void ToStringTracking ( )
         {
             var now = DateTime.Now.Date;
-            var nowString = now.AsPreferenceFormat ( );
+            var nowString = now.ToPreferenceFormat ( );
             var favoriteColor = Guid.NewGuid ( ).ToString ( );
             var firstName = Guid.NewGuid ( ).ToString ( );
             var gender = Guid.NewGuid ( ).ToString ( );
@@ -207,11 +207,11 @@ namespace Preferences.UnitTests
             Assert.Equal ( lastName, target.LastName );
 
             var actual = target.ToString ( );
-            Assert.True ( actual.Contains ( nowString ) );
-            Assert.True ( actual.Contains ( favoriteColor ) );
-            Assert.True ( actual.Contains ( firstName ) );
-            Assert.True ( actual.Contains ( gender ) );
-            Assert.True ( actual.Contains ( lastName ) );
+            Assert.Contains ( nowString, actual );
+            Assert.Contains ( favoriteColor, actual );
+            Assert.Contains ( firstName, actual );
+            Assert.Contains ( gender, actual );
+            Assert.Contains ( lastName, actual );
         }
 
         #endregion

@@ -11,6 +11,7 @@
       <Value>WebSites\Preferences.WebSite\Preferences.WebSite.csproj\App_Start</Value>
       <Value>WebServices\Records.WebService\Records.WebService.csproj\App_Start</Value>
       <Value>Global.asax.cs:WebServices\Records.WebService\Records.WebService.csproj</Value>
+      <Value>WebSites\Preferences.WebSite\Preferences.WebSite.csproj</Value>
     </MetricsExclusionList>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>

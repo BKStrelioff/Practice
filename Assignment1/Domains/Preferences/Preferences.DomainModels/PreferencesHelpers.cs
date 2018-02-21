@@ -102,7 +102,7 @@ namespace Preferences.DomainModels
             for ( var index = 0; index < count; index += 1 )
             {
                 var dateTimeBirth = epoch.AddDays ( randomProvider.Next ( 0, daysSinceEpoch ) );
-                var dateOfBirth = dateTimeBirth.AsPreferenceFormat ( );
+                var dateOfBirth = dateTimeBirth.ToPreferenceFormat ( );
                 var genderValue = genderValues [ dateTimeBirth.Date.Day % 2 ];
                 result.Add ( new PersonColorPreferenceModel
                 {
@@ -145,7 +145,7 @@ namespace Preferences.DomainModels
         [NotNull ]
         public static PersonColorPreferenceModel Parse ( [ NotNull ] string line, char delimiter )
         {
-            var parts = line.Split ( delimiter ).AsSafeEnumerable ( ).Select ( l => l.Trim ( ) ).ToList ( );
+            var parts = line.Split ( delimiter ).ToSafeList().Select ( l => l.Trim ( ) ).ToList ( );
             if ( parts.Count != 5 )
             {
                 throw new InvalidOperationException ( );
