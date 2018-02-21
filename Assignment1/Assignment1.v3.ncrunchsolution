@@ -5,6 +5,12 @@
       <Value>Framework\Framework.Annotations\Framework.Annotations.csproj</Value>
       <Value>Framework\Framework.UnitTests\Framework.UnitTests.csproj</Value>
       <Value>Domains\Preferences\Preferences.UnitTests\Preferences.UnitTests.csproj</Value>
+      <Value>WebSites\Preferences.WebSite\Preferences.WebSite.csproj\Areas\HelpPage</Value>
+      <Value>Controllers\HomeController.cs:WebSites\Preferences.WebSite\Preferences.WebSite.csproj</Value>
+      <Value>Controllers\ValuesController.cs:WebSites\Preferences.WebSite\Preferences.WebSite.csproj</Value>
+      <Value>WebSites\Preferences.WebSite\Preferences.WebSite.csproj\App_Start</Value>
+      <Value>WebServices\Records.WebService\Records.WebService.csproj\App_Start</Value>
+      <Value>Global.asax.cs:WebServices\Records.WebService\Records.WebService.csproj</Value>
     </MetricsExclusionList>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>

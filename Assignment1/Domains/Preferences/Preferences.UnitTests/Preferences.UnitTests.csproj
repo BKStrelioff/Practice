@@ -55,8 +55,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainModelsUnitTests.cs" />
     <Compile Include="PersonColorPreferenceModelUnitTests.cs" />
     <Compile Include="DateExtensionsUnitTests.cs" />
+    <Compile Include="PreferencesHelpersUnitTests.cs" />
     <Compile Include="PreferencesModelUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,6 +69,22 @@
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.8.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.Annotations\Framework.Annotations.csproj">
+      <Project>{02429829-d602-4994-a4fb-2a2e514ecd8a}</Project>
+      <Name>Framework.Annotations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Framework\Framework.Extensions\Framework.Extensions.csproj">
+      <Project>{67ee8a0d-ce74-43ce-a17a-e6f8d76549c2}</Project>
+      <Name>Framework.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Framework\Framework.Helpers\Framework.Helpers.csproj">
+      <Project>{f5fba527-8de4-4e62-9728-80928d0ebed5}</Project>
+      <Name>Framework.Helpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Framework\Framework.Interfaces\Framework.Interfaces.csproj">
+      <Project>{efca59cf-7e99-4f97-b448-d77738a3d31a}</Project>
+      <Name>Framework.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Preferences.DataObjects\Preferences.DataObjects.csproj">
       <Project>{dd4aab7a-883f-47f9-88bf-84eb812dbac8}</Project>
       <Name>Preferences.DataObjects</Name>

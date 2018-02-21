@@ -1,0 +1,15 @@
+﻿Data objects are used to pass data across layers, and as such may not necessarily provide
+all the data and data access for all members.
+
+For the REST world, they are split into groups for GET, POST, PUT, ...
+
+A common base class should be defined, as well as reflection based testing since there is
+a lot of repetition and duplication.
+
+The MappingExtensions provide a simple mechanism for to populate one type from another where 
+both have a common interface. Again this should be standardized, perhaps with a IPopulateFrom interface,
+so that more code can be reused. This IPopulateFrom would also allow this to be moved to Framework, since
+it removes anything specific to Preferences.
+
+Another option is to define conversion/cast operations for the types, but we need a better idea
+where we are headed before going that route.
